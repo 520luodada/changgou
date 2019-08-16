@@ -5,55 +5,138 @@ import com.changgou.entity.StatusCode;
 import com.changgou.goods.pojo.Brand;
 import com.changgou.service.BrandService;
 import com.github.pagehelper.PageInfo;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+
+/****
+ * @Author:shenkunlin
+ * @Description:
+ * @Date 2019/6/14 0:18
+ *****/
 
 @RestController
 @RequestMapping("/brand")
+@CrossOrigin
 public class BrandController {
-    @Autowired
+
+    @Autowired(required = false)
     private BrandService brandService;
-    @GetMapping("/findAll")
+
+
+    @PostMapping("/brandlist/{categoryid}")
+    public Result<List> listbrandformap(@PathVariable(value ="categoryid")Integer categoryid){
+        Map<String, Object> all = brandService.all(categoryid);
+        List<Brand> brandList = (List<Brand>) all.get("brandList");
+
+        return new Result<>(true,StatusCode.ACCESSERROR,"查询成功",brandList);
+    }
+   @PostMapping("/findbrandlist/{categoryid}")
+   public Result<List> listBrand(@PathVariable(value ="categoryid")Integer categoryid){
+       List<Brand> list = brandService.listBrand(categoryid);
+       return new Result<>(true,StatusCode.ACCESSERROR,"查询成功",list);
+   }
+     /***
+     * Brand分页条件搜索实现
+     * @param brand
+     * @param page
+     * @param size
+     * @return
+     */
+    @PostMapping(value = "/search/{page}/{size}" )
+    public Result<PageInfo> findPage(@RequestBody(required = false)  Brand brand, @PathVariable  int page, @PathVariable  int size){
+        //调用BrandService实现分页条件查询Brand
+        PageInfo<Brand> pageInfo = brandService.findPage(brand, page, size);
+        return new Result(true, StatusCode.OK,"查询成功",pageInfo);
+    }
+
+    /***
+     * Brand分页搜索实现
+     * @param page:当前页
+     * @param size:每页显示多少条
+     * @return
+     */
+    @GetMapping(value = "/search/{page}/{size}" )
+    public Result<PageInfo> findPage(@PathVariable  int page, @PathVariable  int size){
+        //调用BrandService实现分页查询Brand
+        PageInfo<Brand> pageInfo = brandService.findPage(page, size);
+        return new Result<PageInfo>(true,StatusCode.OK,"查询成功",pageInfo);
+    }
+
+    /***
+     * 多条件搜索品牌数据
+     * @param brand
+     * @return
+     */
+    @PostMapping(value = "/search" )
+    public Result<List<Brand>> findList(@RequestBody(required = false)  Brand brand){
+        //调用BrandService实现条件查询Brand
+        List<Brand> list = brandService.findList(brand);
+        return new Result<List<Brand>>(true,StatusCode.OK,"查询成功",list);
+    }
+
+    /***
+     * 根据ID删除品牌数据
+     * @param id
+     * @return
+     */
+    @DeleteMapping(value = "/{id}" )
+    public Result delete(@PathVariable Integer id){
+        //调用BrandService实现根据主键删除
+        brandService.delete(id);
+        return new Result(true,StatusCode.OK,"删除成功");
+    }
+
+    /***
+     * 修改Brand数据
+     * @param brand
+     * @param id
+     * @return
+     */
+    @PutMapping(value="/{id}")
+    public Result update(@RequestBody  Brand brand,@PathVariable Integer id){
+        //设置主键值
+        brand.setId(id);
+        //调用BrandService实现修改Brand
+        brandService.update(brand);
+        return new Result(true,StatusCode.OK,"修改成功");
+    }
+
+    /***
+     * 新增Brand数据
+     * @param brand
+     * @return
+     */
+    @PostMapping
+    public Result add(@RequestBody   Brand brand){
+        //调用BrandService实现添加Brand
+        brandService.add(brand);
+        return new Result(true,StatusCode.OK,"添加成功");
+    }
+
+    /***
+     * 根据ID查询Brand数据
+     * @param id
+     * @return
+     */
+    @GetMapping("/{id}")
+    public Result<Brand> findById(@PathVariable Integer id){
+        //调用BrandService实现根据主键查询Brand
+        Brand brand = brandService.findById(id);
+        return new Result<Brand>(true,StatusCode.OK,"查询成功",brand);
+    }
+
+    /***
+     * 查询Brand全部数据
+     * @return
+     */
+    @GetMapping
     public Result<List<Brand>> findAll(){
-        List<Brand> all = brandService.findAll();
-        return new Result<>(true, StatusCode.ACCESSERROR,"查询成功",all);
+        //调用BrandService实现查询所有Brand
+        List<Brand> list = brandService.findAll();
+        return new Result<List<Brand>>(true, StatusCode.OK,"查询成功",list) ;
     }
-
-    @GetMapping("/findById/{id}")
-    public Result<Brand> findById(@PathVariable(value = "id") Integer id){
-        Brand byId = brandService.findById(id);
-
-        return new Result<>(true, StatusCode.ACCESSERROR,"查询成功",byId);
-    }
-    @PutMapping("/addBrand")
-    public Result addBrand(@RequestBody Brand brand){
-      brandService.addBrand(brand);
-
-        return new Result<>(true, StatusCode.ACCESSERROR,"新增成功");
-    }
-   @PutMapping("/updata/{id}")
-    public Result update(@RequestBody Brand brand,@PathVariable(value = "id") Integer id){
-      brand.setId(id);
-        brandService.update(brand,id);
-
-        return new Result<>(true, StatusCode.ACCESSERROR,"更新成功");
-    }
-    @DeleteMapping("/deleteById/{id}")
-    public Result uodate(@PathVariable(value = "id")Integer id
-    ){
-        brandService.deleteByid(id);
-
-        return new Result<>(true, StatusCode.ACCESSERROR,"删除成功");
-    }
-    //分页查询
-    @GetMapping("/search/{page}/{size}")
-    public Result<PageInfo<Brand>> search(@PathVariable(value = "page")Integer page,@PathVariable(value = "size")Integer size
-    ){
-        PageInfo<Brand> serach = brandService.serach(page, size);
-
-        return new Result<PageInfo<Brand>>(true, StatusCode.ACCESSERROR,"分页查询成功",serach);
-    }
-
 }
