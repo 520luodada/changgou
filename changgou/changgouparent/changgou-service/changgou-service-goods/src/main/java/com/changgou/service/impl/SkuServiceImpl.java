@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /****
@@ -222,5 +223,15 @@ public class SkuServiceImpl implements SkuService {
     @Override
     public List<Sku> findAll() {
         return skuMapper.selectAll();
+    }
+
+    @Override
+    public List<Sku> skuList(String status,Integer start,Integer end) {
+        Sku sku = new Sku();
+        sku.setStatus(status);
+
+
+    return skuMapper.selectByPage(status,start,end);
+    // return skuMapper.select(sku);
     }
 }

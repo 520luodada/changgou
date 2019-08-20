@@ -27,6 +27,13 @@ public class SkuController {
     private SkuService skuService;
 
 
+    // es
+    @GetMapping("/searchByStatus/{status}/{start}/{end}")
+    public Result<List<Sku>> searchByStatus(@PathVariable(value = "status") String status,@PathVariable(value = "start") Integer start,@PathVariable(value = "end") Integer end) {
+        List<Sku> skus = skuService.skuList(status,start,end);
+        return new Result<>(true, StatusCode.OK, "查询成功", skus
+        );
+    }
     //  修改sku商品数量1
     @PutMapping("/updateSkuWeightByIdForSku/{id}")
     public Result updateSkuWeightByIdForSku(@RequestBody Sku sku){

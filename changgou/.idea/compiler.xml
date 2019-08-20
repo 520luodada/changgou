@@ -15,7 +15,11 @@
         <module name="changgou-service-file" />
         <module name="changgou-service-goods" />
         <module name="changgou-service-goods-api" />
+        <module name="changgou-service-search" />
+        <module name="changgou-service-search-api" />
+        <module name="changgou-web-search" />
         <module name="code-template" />
+        <module name="springbootthymeleaf" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -32,10 +36,14 @@
       <module name="changgou-service-goods" target="1.8" />
       <module name="changgou-service-goods-album" target="1.8" />
       <module name="changgou-service-goods-api" target="1.8" />
+      <module name="changgou-service-search" target="1.8" />
+      <module name="changgou-service-search-api" target="1.8" />
       <module name="changgou-web" target="1.8" />
+      <module name="changgou-web-search" target="1.8" />
       <module name="changgouparent" target="1.8" />
       <module name="code-template" target="1.5" />
       <module name="code-template (1)" target="1.5" />
+      <module name="springbootthymeleaf" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -50,6 +58,10 @@
       <module name="changgou-service-goods" options="-parameters" />
       <module name="changgou-service-goods-album" options="-parameters" />
       <module name="changgou-service-goods-api" options="-parameters" />
+      <module name="changgou-service-search" options="-parameters" />
+      <module name="changgou-service-search-api" options="-parameters" />
+      <module name="changgou-web-search" options="-parameters" />
+      <module name="springbootthymeleaf" options="-parameters" />
     </option>
   </component>
 </project>

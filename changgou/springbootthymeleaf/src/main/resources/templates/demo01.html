@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 th:text="${hello}"></h1>
+<hr>
+<form th:action="@{/demo}">
+    <input type="submit">
+</form>
+
+<hr>
+
+<ul th:each="user,userindex:${users}">
+    <li th:text="${userindex.count}"></li>
+    <li th:text="${userindex.index}"></li>
+
+    <li th:text="${user.id}"></li>
+    <li th:text="${user.name}"></li>
+    <li th:text="${user.address}"></li>
+</ul>
+
+<h1 >map输出</h1>
+<span th:text="${dataMap.No}"/>
+<ul th:each="map:${dataMap}">
+    <li th:text="${map.key}"></li>
+    <li th:text="${map.value}"></li>
+</ul>
+<h1 >数组输出</h1>
+
+<ul th:each="name:${names}">
+    <li th:text="${name}"/>
+</ul>
+<h1 >日期输出</h1>
+<span th:text="${#dates.format(now,'yyy-MM-dd hh:mm:ss')}"/>
+<hr>
+<link th:text="${#dates.format(now,'yyy/mm/dd hh/mm:ss')}">
+<h1 >判断if输出</h1>
+
+<span th:if="${age>=20}">孩子大于20了</span>
+<h1 >引用页面</h1>
+<div th:include="footer::copy"></div>
+</body>
+
+
+</html>

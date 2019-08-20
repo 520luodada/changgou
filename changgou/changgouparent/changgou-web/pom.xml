@@ -12,5 +12,8 @@
     <groupId>com.changgou</groupId>
     <artifactId>changgou-web</artifactId>
     <packaging>pom</packaging>
+    <modules>
+        <module>changgou-web-search</module>
+    </modules>
 
 </project>

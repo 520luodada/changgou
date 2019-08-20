@@ -15,9 +15,13 @@
       <module fileurl="file://$PROJECT_DIR$/changgouparent/changgou-service/changgou-service-file/changgou-service-file.iml" filepath="$PROJECT_DIR$/changgouparent/changgou-service/changgou-service-file/changgou-service-file.iml" />
       <module fileurl="file://$PROJECT_DIR$/changgouparent/changgou-service/changgou-service-goods/changgou-service-goods.iml" filepath="$PROJECT_DIR$/changgouparent/changgou-service/changgou-service-goods/changgou-service-goods.iml" />
       <module fileurl="file://$PROJECT_DIR$/changgouparent/changgou-service-api/changgou-service-goods-api/changgou-service-goods-api.iml" filepath="$PROJECT_DIR$/changgouparent/changgou-service-api/changgou-service-goods-api/changgou-service-goods-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/changgouparent/changgou-service/changgou-service-search/changgou-service-search.iml" filepath="$PROJECT_DIR$/changgouparent/changgou-service/changgou-service-search/changgou-service-search.iml" />
+      <module fileurl="file://$PROJECT_DIR$/changgouparent/changgou-service-api/changgou-service-search-api/changgou-service-search-api.iml" filepath="$PROJECT_DIR$/changgouparent/changgou-service-api/changgou-service-search-api/changgou-service-search-api.iml" />
       <module fileurl="file://$PROJECT_DIR$/changgouparent/changgou-web/changgou-web.iml" filepath="$PROJECT_DIR$/changgouparent/changgou-web/changgou-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/changgouparent/changgou-web/changgou-web-search/changgou-web-search.iml" filepath="$PROJECT_DIR$/changgouparent/changgou-web/changgou-web-search/changgou-web-search.iml" />
       <module fileurl="file://$PROJECT_DIR$/changgouparent/changgouparent.iml" filepath="$PROJECT_DIR$/changgouparent/changgouparent.iml" />
       <module fileurl="file://$PROJECT_DIR$/Template/code-template/code-template.iml" filepath="$PROJECT_DIR$/Template/code-template/code-template.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springbootthymeleaf/springbootthymeleaf.iml" filepath="$PROJECT_DIR$/springbootthymeleaf/springbootthymeleaf.iml" />
     </modules>
   </component>
 </project>

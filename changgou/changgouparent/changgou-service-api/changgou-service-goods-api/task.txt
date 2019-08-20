@@ -1,0 +1,12 @@
+关于 es检索总结
+
+如果普通根据条件查询
+必须字段
+ booleanQuery.must(QueryBuilders.matchQuery("specMap."+key.substring(5)+".keyword",map.get(key)));
+
+ 分页 排序都用 builder
+ Pageable pageable = PageRequest.of(page - 1, 10);
+ builder.withPageable(pageable);
+
+ 排序
+ builder.withSort(SortBuilders.fieldSort(sortFiled).order(SortOrder.fromString(sortRule)));

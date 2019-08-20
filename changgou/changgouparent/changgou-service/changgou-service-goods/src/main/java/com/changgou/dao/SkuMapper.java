@@ -19,4 +19,6 @@ public interface SkuMapper extends Mapper<Sku> {
   void   updateSkuWeightById(Integer weight,long id);
 
 
+    @Select("select * from tb_sku where status=#{status} limit #{start},#{end}")
+    List<Sku> selectByPage(String status,Integer start,Integer end);
 }

@@ -78,4 +78,5 @@ public interface SkuService {
     List<Sku> findAll();
 
 
+    List<Sku> skuList(String status,Integer start,Integer end);
 }

@@ -8,6 +8,7 @@
       <list>
         <option value="$PROJECT_DIR$/changgouparent/pom.xml" />
         <option value="$PROJECT_DIR$/Template/code-template/pom.xml" />
+        <option value="$PROJECT_DIR$/springbootthymeleaf/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">
