@@ -26,6 +26,7 @@ public class SkuInfocontroller {
 @GetMapping("/import")
     public Result importSkutoEs(){
       skuInfoService.importSkutoEs();
+
 return new Result(true, StatusCode.OK,"导入es成功");
     }
 

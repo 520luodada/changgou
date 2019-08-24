@@ -46,9 +46,9 @@ import java.util.*;
 
 @Service
 public class SkuInfoServiceImpl implements SkuInfoService {
-    @Autowired
+    @Autowired(required = false)
     private SkuInfoMapper skuInfoMapper;
-    @Autowired
+    @Autowired(required = false)
     private SkuFeign skuFeign;
     @Autowired
     private ElasticsearchTemplate elasticsearchTemplate;
@@ -164,6 +164,8 @@ public class SkuInfoServiceImpl implements SkuInfoService {
         map.put("rows", rows);
         map.put("totalElements", totalElements);
         map.put("totalPages", totalPages);
+        map.put("pageNum",build.getPageable().getPageNumber()+1);
+        map.put("pageSize",build.getPageable().getPageSize());
 
 return map;
         // 构建原来的
@@ -206,12 +208,13 @@ return map;
             // 价格
         String price= map.get("price");
             if (!StringUtils.isEmpty(price)){
-                String[] split = price.split("-");
-                booleanQuery.must(QueryBuilders.rangeQuery("price").gte(split[0]));
-                if (split.length>1){
-                    booleanQuery.must(QueryBuilders.rangeQuery("price").lte(split[1]));
+                String[] splits = price.split("-");
+                booleanQuery.must(QueryBuilders.rangeQuery("price").gte(splits[0]));
+                if (splits.length==2){
+                    booleanQuery.must(QueryBuilders.rangeQuery("price").lte(splits[1]));
                 }
             }
+            builder.withFilter(booleanQuery);
             // 分页
             String pageNum = map.get("pageNum");
             if (StringUtils.isEmpty(pageNum)){
@@ -329,6 +332,7 @@ return map;
         listMap.put("categoryList",skuCategorylist);
         listMap.put("brand",skubrandlist);
         listMap.put("specmap",specmap);
+
         return listMap;
 
     }
